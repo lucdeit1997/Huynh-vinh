@@ -45,11 +45,11 @@ module.exports = {
         })
     },
 
-    updateByID : ({ productID, name, description, status, price, image, category }) => {
+    updateByID : ({ productID, name, description, price, image, category }) => {
         return new Promise( async resolve => {
             try {
                 let infoProductAfterUpdate = await PRODUCT_COLL.findByIdAndUpdate(productID, {
-                    name, description, status, price, image, category
+                    name, description, price, image, category
                 }, { new: true });
                 if(!infoProductAfterUpdate)
                     return resolve({ error: true, message: 'cannot_update' });

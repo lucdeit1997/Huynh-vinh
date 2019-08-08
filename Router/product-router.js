@@ -48,9 +48,9 @@ router.get('/update/:productID', async(req, res) => {
 })
 
 router.post('/update/:productID', async(req, res) => {
-    let { name, description, status, price, image, category } = req.body;
+    let { name, description, price, category } = req.body;
     let { productID } = req.params;
-    let infoProduct = await PRODUCT_MODEL.updateByID({ productID, name, description, status, price, image, category });
+    let infoProduct = await PRODUCT_MODEL.updateByID({ productID, name, description, price, category });
     res.json(infoProduct);
 })
 
