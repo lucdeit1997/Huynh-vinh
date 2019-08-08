@@ -1,0 +1,49 @@
+<%- include layout/header %>
+<div class="main-content">
+        <div class="main-content-inner">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card_title">DANH SÁCH DANH MỤC</h4>
+                                <div class="single-table">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover progress-table text-center">
+                                            <thead class="text-uppercase">
+                                            <tr>
+                                                <th scope="col">STT</th>
+                                                <th scope="col">Tên Danh Mục</th>
+                                                <th scope="col">Slug</th>
+                                                <th scope="col">Tùy Chọn</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                                <% if (data.categories && data.categories.length > 0) { %>
+                                                    <% data.categories.forEach((category, index) => { %>
+                                                        <tr>
+                                                            <th scope="row"> <%= index + 1%></th>
+                                                            <td><%= category.name && category.name %></td>
+                                                            <td><%= category.slug && category.slug %></td>
+                                                            <td>
+                                                                <ul class="d-flex justify-content-center">
+                                                                    <li class="mr-3"><a href="#" class="text-primary"><i class="fa fa-edit"></i></a></li>
+                                                                    <li><a href="#" class="text-danger"><i class="ti-trash"></i></a></li>
+                                                                </ul>
+                                                            </td>
+                                                        </tr>
+                                                    <% }) %>
+                                                <% } %>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<%- include layout/footer%>

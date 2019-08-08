@@ -1,0 +1,85 @@
+<%- include layout/header %>
+    <div class="main-content">
+        <div class="main-content-inner">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 mt-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <form action="/product/insert", method="POST" enctype="multipart/form-data">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label for="example-text-input-lg" class="col-form-label">Tên Sản Phẩm</label>
+                                                    <input class="form-control form-control-lg" name="name" type="text" id="txtName" <% if (data.product) { %>
+                                                        value="<%= data.product.name && data.product.name%>"
+                                                    <% } %>>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label for="example-text-input-lg" class="col-form-label">Danh Mục</label>
+                                                    <select class="form-control" name="category" id="txtCategory">
+                                                        <% if (data.categories && data.categories.length > 0) { %>
+                                                            <% data.categories.forEach(category => { %>
+                                                                <option value="<%= category._id && category._id%>" <% if ( JSON.stringify(data.product.category._id) == JSON.stringify(category._id)) { %>
+                                                                    selected
+                                                                <% } %> ><%= category.name && category.name %></option>
+                                                            <% }) %>
+                                                        <% } %>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label for="example-text-input-lg" class="col-form-label">Giá</label>
+                                                    <input class="form-control form-control-lg" name="price" type="number" id="txtPrice"
+                                                        <% if (data.product) { %>
+                                                            value = "<%= data.product.price && data.product.price%>"
+                                                        <% } %>
+                                                    >
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="example-text-input-lg" class="col-form-label">Mô Tả</label>
+                                                    <textarea class="form-control" name="description" rows="4" aria-label="With textarea" id="txtDescription"
+                                                        <% if (data.product) { %>
+                                                            value="<%= data.product.description && data.product.description %>"
+                                                        <% } %>
+                                                    ></textarea>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label for="example-text-input-lg" class="col-form-label">Hình Ảnh</label>
+                                                    <div class="form-group">
+                                                        <input type='file' name="image"  onchange="readURL(this);" /> <br>
+                                                        <img id="blah" src="<% if (data.product.image.lenght > 1) { %>
+                                                            /files/images/<%= data.product.image %>
+                                                        <% }else{ %>
+                                                            http://placehold.it/180
+                                                        <% } %>" alt="your image" style="max-height: 160px"/> <br>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <button id="btnAdd" type="submit" class="btn btn-primary" style="margin:0 auto; display: block; padding: 10px 50px" > Thêm</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<%- include layout/footer %>

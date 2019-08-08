@@ -1,0 +1,67 @@
+<%- include layout/header %>
+<div class="main-content">
+        <div class="main-content-inner">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card_title">DANH SÁCH SẢN PHẨM</h4>
+                                <div class="single-table">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover progress-table text-center">
+                                            <thead class="text-uppercase">
+                                            <tr>
+                                                <th scope="col">STT</th>
+                                                <th scope="col">Hình Ảnh</th>
+                                                <th scope="col">Tên Sản Phẩm</th>
+                                                <th scope="col">Danh Muc</th>
+                                                <th scope="col">Giá Tiền</th>
+                                                <th scope="col">Trạng Thái</th>
+                                                <th scope="col">Tùy Chọn</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                                <% if (data.products && data.products.length > 0) { %>
+                                                    <% data.products.forEach((product, index) => { %>
+                                                        <tr>
+                                                            <th scope="row"> <%= index + 1%></th>
+                                                            <td>
+                                                                <img src="/files/images/<%= product.image && product.image %>" width= "150px" style="height: 85px !important" alt="">
+                                                            </td>
+                                                            <td><%= product.name && product.name %></td>
+                                                            <td><%= product.category.name && product.category.name %></td>
+                                                            <td><%= product.price && product.price %></td>
+                                                            <td>
+                                                                <% if (product.status && product.status == 1) { %>
+                                                                    <span class="badge badge-success mb-3">Đang Hoạt Động</span>
+                                                                <% }else{ %>
+                                                                    <span class="badge badge-danger mb-3">Không Hoạt Động</span>
+                                                                <% } %>
+                                                            </td>
+                                                            <td>
+                                                                <ul class="d-flex justify-content-center">
+                                                                    <li class="mr-3"><a href="/product/update/<%=product._id && product._id%>" class="text-primary"><i class="fa fa-edit"></i></a></li>
+                                                                    <li><a href="/product/update-status/<%=product._id && product._id%>/<% if (product.status) { %>
+                                                                        0
+                                                                    <% }else{ %>
+                                                                        1
+                                                                    <% } %>" class="text-danger"><i class="ti-trash"></i></a></li>
+                                                                </ul>
+                                                            </td>
+                                                        </tr>
+                                                    <% }) %>
+                                                <% } %>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<%- include layout/footer%>

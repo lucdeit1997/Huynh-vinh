@@ -1,0 +1,26 @@
+<script>
+    $(document).ready(function(event){
+        $('#btnAdd').on('click', function(){
+            let name = $('#txtName').val();
+            if(name == "")
+                return alert("Vui Long Nhap Ten Danh Muc");
+            $.ajax({
+                url: '/category/insert',
+                type: 'post',
+                data: { name },
+                success: function(resp){ 
+                    if(!resp.error)
+                    {
+                        $('#txtName').val("");
+                        return alert('Them Danh Muc Thanh Cong');
+                    }else{
+                        return alert('Them Danh Muc That Bai');
+                    }
+                },
+                error: function(){
+                    return alert('Them Danh Muc That Bai');
+                }
+            });
+        })
+    })
+</script>
